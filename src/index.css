@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Nepathon Design System - Dark theme with vibrant flat accent colors */
+
+@layer base {
+  :root {
+    /* Global palette switched to Black / Gold / Silver */
+
+    /* Background & foreground */
+    --background: 0 0% 0%; /* pure black */
+    --foreground: 0 0% 82%; /* silver-like light text */
+
+    /* Surfaces */
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 94%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Primary -> Gold */
+    --primary: 45 95% 50%; /* gold */
+    --primary-foreground: 0 0% 6%; /* near-black for text on gold */
+
+    /* Secondary -> Silver */
+    --secondary: 0 0% 78%; /* silver */
+    --secondary-foreground: 0 0% 6%;
+
+    /* Accent kept as gold for emphasis */
+    --accent: 45 95% 50%;
+    --accent-foreground: 0 0% 6%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 12%;
+    --input: 0 0% 10%;
+    --ring: 45 95% 50%;
+
+    --radius: 0.75rem;
+
+    /* Reuse the gold tone for previously neon/glow variables so glows match the new palette */
+    --neon-green: 45 95% 50%;
+    --electric-blue: 45 95% 50%;
+    --hot-pink: 45 95% 50%;
+    --cyber-purple: 45 95% 50%;
+
+    /* Animation colors */
+    --code-rain-primary: 45 95% 50%;
+    --code-rain-secondary: 45 80% 40%;
+  }
+}
+
+.code-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+.code-rain::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 98px,
+    hsl(var(--neon-green) / 0.03) 100px
+  );
+  animation: matrix-lines 20s linear infinite;
+}
+
+@keyframes matrix-lines {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(100px); }
+}
+
+/* Glitch effect for titles */
+.glitch {
+  position: relative;
+  animation: glitch-skew 1s ease-in-out infinite alternate-reverse;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Glitch color accents restored */
+.glitch::before {
+  animation: glitch-1 0.5s ease-in-out infinite alternate-reverse;
+  color: hsl(var(--electric-blue));
+  z-index: -1;
+}
+
+.glitch::after {
+  animation: glitch-2 0.5s ease-in-out infinite alternate-reverse;
+  color: hsl(var(--hot-pink));
+  z-index: -2;
+}
+
+@keyframes glitch-1 {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-2px); }
+  40% { transform: translateX(-2px); }
+  60% { transform: translateX(2px); }
+  80% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes glitch-2 {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(2px); }
+  40% { transform: translateX(2px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes glitch-skew {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(0.5deg); }
+  40% { transform: skew(0deg); }
+  60% { transform: skew(-0.5deg); }
+  80% { transform: skew(0deg); }
+  100% { transform: skew(0deg); }
+}
+
+/* Neon glow effects */
+.neon-glow {
+  box-shadow: 
+    0 0 5px hsl(var(--neon-green) / 0.5),
+    0 0 10px hsl(var(--neon-green) / 0.5),
+    0 0 15px hsl(var(--neon-green) / 0.5);
+}
+.electric-glow {
+  box-shadow: 
+    0 0 5px hsl(var(--electric-blue) / 0.5),
+    0 0 10px hsl(var(--electric-blue) / 0.5),
+    0 0 15px hsl(var(--electric-blue) / 0.5);
+}
+.pink-glow {
+  box-shadow: 
+    0 0 5px hsl(var(--neon-green) / 0.5),
+    0 0 10px hsl(var(--neon-green) / 0.5),
+    0 0 15px hsl(var(--neon-green) / 0.5);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse animation */
+@keyframes pulse-neon {
+  0%, 100% { 
+    box-shadow: 
+      0 0 5px hsl(var(--neon-green) / 0.5),
+      0 0 10px hsl(var(--neon-green) / 0.5),
+      0 0 15px hsl(var(--neon-green) / 0.5);
+  }
+  50% { 
+    box-shadow: 
+      0 0 10px hsl(var(--neon-green) / 0.8),
+      0 0 20px hsl(var(--neon-green) / 0.8),
+      0 0 30px hsl(var(--neon-green) / 0.8);
+  }
+}
+
+.pulse-neon {
+  animation: pulse-neon 2s ease-in-out infinite;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .code-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    opacity: 0.1;
+  }
+
+  .code-rain::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 98px,
+      hsl(var(--neon-green) / 0.03) 100px
+    );
+    animation: matrix-lines 20s linear infinite;
+  }
+
+  @keyframes matrix-lines {
+    0% {
+      transform: translateX(-100px);
+    }
+    100% {
+      transform: translateX(100px);
+    }
+  }
+}
+
+@layer utilities {
+  .text-foreground {
+    color: hsl(var(--foreground));
+  }
+  .text-primary {
+    color: hsl(var(--primary));
+  }
+  .text-muted-foreground {
+    color: hsl(var(--muted-foreground));
+  }
+  .text-accent {
+    color: hsl(var(--accent));
+  }
+}

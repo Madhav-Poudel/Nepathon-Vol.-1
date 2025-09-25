@@ -18,7 +18,10 @@ const Navbar = () => {
     <nav className="w-full bg-black backdrop-blur border-b border-gray-700 sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between h-20 px-4">
         {/* Left: Brand */}
-        <a href="#hero" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+        <a
+          href="#hero"
+          className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+        >
           <div className="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center">
             <div className="w-5 h-5 rounded-full bg-black" />
           </div>

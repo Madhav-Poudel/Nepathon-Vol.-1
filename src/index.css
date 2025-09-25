@@ -11,8 +11,8 @@
     /* Global palette switched to Black / Gold / Silver */
 
     /* Background & foreground */
-    --background: 0 0% 0%; /* pure black */
-    --foreground: 0 0% 82%; /* silver-like light text */
+    --background: 0 0% 10%; /* dark gray */
+    --foreground: 0 0% 90%; /* light gray */
 
     /* Surfaces */
     --card: 0 0% 6%;
@@ -253,5 +253,30 @@
   }
   .text-accent {
     color: hsl(var(--accent));
+  }
+}
+
+@layer base {
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', sans-serif;
+  }
+
+  a {
+    color: hsl(var(--primary));
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: hsl(var(--primary-foreground));
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: hsl(var(--foreground));
+  }
+
+  p {
+    color: hsl(var(--foreground));
   }
 }

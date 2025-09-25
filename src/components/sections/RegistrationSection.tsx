@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { UserPlus, Users } from "lucide-react";
+import { UserPlus } from "lucide-react";
 import {
 	Select,
 	SelectContent,
@@ -12,11 +12,14 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import emailjs from "emailjs-com";
 
 interface TeamMember {
+	id: string;
 	name: string;
 	email: string;
+	phone: string;
+	tshirt: string;
+	food: string;
 }
 
 const RegistrationSection = () => {
@@ -30,88 +33,70 @@ const RegistrationSection = () => {
 
 	const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
 
-	const addTeamMember = () => {
-		if (teamMembers.length < 4) {
-			setTeamMembers([...teamMembers, { name: "", email: "" }]);
-		}
-	};
-
 	const updateTeamMember = (
 		index: number,
 		field: keyof TeamMember,
 		value: string
 	) => {
-		const updated = teamMembers.map((member, i) =>
-			i === index ? { ...member, [field]: value } : member
-		);
-		setTeamMembers(updated);
+		setTeamMembers((prev) => {
+			const updated = [...prev];
+			updated[index] = { ...updated[index], [field]: value };
+			return updated;
+		});
 	};
 
-	const removeTeamMember = (index: number) => {
-		setTeamMembers(teamMembers.filter((_, i) => i !== index));
-	};
-
-	// Enhanced validation to include all required fields
-	const handleSubmit = (e: React.FormEvent) => {
+	// Enhanced validation logic
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
-		// Enhanced validation
-		if (!formData.teamName || !formData.teamLeader || !formData.city) {
+		// Check if all required fields in formData are filled
+		const requiredFields = ['teamName', 'teamLeader', 'city'];
+		const missingFields = requiredFields.filter((field) => !formData[field]);
+
+		if (missingFields.length > 0) {
 			toast({
 				title: "Missing Information",
-				description: "Please fill in all required fields.",
+				description: `Please fill in all required fields: ${missingFields.join(', ')}`,
 				variant: "destructive",
 			});
 			return;
 		}
 
-		if (teamMembers.some((member) => !member.name || !member.email)) {
+		// Check if all team members have required fields filled
+		const incompleteMembers = teamMembers.some((member) => {
+			return !member.name || !member.email || !member.phone || !member.tshirt || !member.food;
+		});
+
+		if (incompleteMembers) {
 			toast({
 				title: "Incomplete Team Member Information",
-				description: "Please ensure all team members have a name and email.",
+				description: "Please ensure all team members have filled all required fields.",
 				variant: "destructive",
 			});
 			return;
 		}
 
-		// Prepare email data
-		const emailData = {
-			team_name: formData.teamName,
-			team_leader: formData.teamLeader,
-			member_count: formData.memberCount,
-			city: formData.city,
-			team_members: teamMembers
-				.map((member, index) => `Member ${index + 1}: ${member.name}, ${member.email}`)
-				.join("\n"),
-		};
-
-		// Send email using EmailJS
-		emailjs
-			.send("service_bvzhaab", "template_omx6xke", emailData, "0aKXUicBRjnhqUyof")
-			.then(
-				() => {
-					toast({
-						title: "Registration Successful!",
-						description:
-							"Your team has been registered for Nepathon. Check your email for confirmation.",
-					});
-					// Reset form
-					setFormData({
-						teamName: "",
-						teamLeader: "",
-						memberCount: "2",
-						city: "",
-					});
-					setTeamMembers([]);
-				},
-				(error) => {
-					toast({
-						title: "Email Sending Failed",
-						description: `Error: ${error.text}`,
-						variant: "destructive",
-					});
-				}
-			);
+		try {
+			await sendToGoogleSheets(formData, teamMembers);
+			toast({
+				title: "Submission Successful!",
+				description: "Your data has been stored in Google Sheets.",
+			});
+			// Reset form
+			setFormData({
+				teamName: "",
+				teamLeader: "",
+				memberCount: "2",
+				city: "",
+			});
+			setTeamMembers([]);
+		} catch (error) {
+			toast({
+				title: "Submission Failed",
+				description: `Error: ${error.message}`,
+				variant: "destructive",
+			});
+		}
 	};
 
 	return (
@@ -147,7 +132,15 @@ const RegistrationSection = () => {
 										>
 											Team Name
 										</Label>
-										<Input id="teamName" name="teamName" required />
+										<Input
+											id="teamName"
+											name="teamName"
+											value={formData.teamName}
+											onChange={(e) =>
+												setFormData({ ...formData, teamName: e.target.value })
+											}
+											required
+										/>
 									</div>
 									<div>
 										<Label
@@ -177,7 +170,15 @@ const RegistrationSection = () => {
 										<Label htmlFor="city" className="text-foreground/80">
 											City
 										</Label>
-										<Input id="city" name="city" required />
+										<Input
+											id="city"
+											name="city"
+											value={formData.city}
+											onChange={(e) =>
+												setFormData({ ...formData, city: e.target.value })
+											}
+											required
+										/>
 									</div>
 								</div>
 							</div>
@@ -208,6 +209,10 @@ const RegistrationSection = () => {
 												<Input
 													id="leaderName"
 													name="leaderName"
+													value={formData.teamLeader}
+													onChange={(e) =>
+														setFormData({ ...formData, teamLeader: e.target.value })
+													}
 													required
 												/>
 											</div>
@@ -319,8 +324,12 @@ const RegistrationSection = () => {
 											setTeamMembers((prev) => [
 												...prev,
 												{
+													id: Date.now().toString(),
 													name: "",
 													email: "",
+													phone: "",
+													tshirt: "M",
+													food: "Veg",
 												},
 											])
 										}
@@ -336,7 +345,7 @@ const RegistrationSection = () => {
 
 								{teamMembers.map((member, index) => (
 									<div
-										key={`${member.name}-${index}`}
+										key={member.id}
 										className="space-y-4 mb-6"
 									>
 										<h5 className="text-lg font-medium text-foreground/80">
@@ -353,19 +362,10 @@ const RegistrationSection = () => {
 												<Input
 													id={`memberName-${index}`}
 													name={`memberName-${index}`}
-													required
-												/>
-											</div>
-											<div>
-												<Label
-													htmlFor={`memberPhone-${index}`}
-													className="text-foreground/80"
-												>
-													Phone Number
-												</Label>
-												<Input
-													id={`memberPhone-${index}`}
-													name={`memberPhone-${index}`}
+													value={member.name}
+													onChange={(e) =>
+														updateTeamMember(index, "name", e.target.value)
+													}
 													required
 												/>
 											</div>
@@ -379,6 +379,27 @@ const RegistrationSection = () => {
 												<Input
 													id={`memberEmail-${index}`}
 													name={`memberEmail-${index}`}
+													value={member.email}
+													onChange={(e) =>
+														updateTeamMember(index, "email", e.target.value)
+													}
+													required
+												/>
+											</div>
+											<div>
+												<Label
+													htmlFor={`memberPhone-${index}`}
+													className="text-foreground/80"
+												>
+													Phone Number
+												</Label>
+												<Input
+													id={`memberPhone-${index}`}
+													name={`memberPhone-${index}`}
+													value={member.phone}
+													onChange={(e) =>
+														updateTeamMember(index, "phone", e.target.value)
+													}
 													required
 												/>
 											</div>
@@ -389,7 +410,13 @@ const RegistrationSection = () => {
 												>
 													T-shirt Size
 												</Label>
-												<Select required>
+												<Select
+													value={member.tshirt}
+													onValueChange={(value) =>
+														updateTeamMember(index, "tshirt", value)
+													}
+													required
+												>
 													<SelectTrigger>
 														<SelectValue placeholder="Select" />
 													</SelectTrigger>
@@ -408,7 +435,13 @@ const RegistrationSection = () => {
 												>
 													Food Preferences
 												</Label>
-												<Select required>
+												<Select
+													value={member.food}
+													onValueChange={(value) =>
+														updateTeamMember(index, "food", value)
+													}
+													required
+												>
 													<SelectTrigger>
 														<SelectValue placeholder="Select" />
 													</SelectTrigger>
@@ -479,3 +512,50 @@ const RegistrationSection = () => {
 };
 
 export default RegistrationSection;
+
+const spreadsheetId = "1t0ir5z73UpFzUWPasX0mLKnK8yBoqBu1Roi4ChlXzLw"; // Updated with the user's Google Spreadsheet ID
+
+// Updated Google Sheets integration using Google Apps Script web app
+const sendToGoogleSheets = async (formData, teamMembers) => {
+    try {
+        // Prepare the data to send as an object matching the Apps Script expectations
+        const data = {
+            name: formData.teamLeader,
+            email: teamMembers.length > 0 ? teamMembers[0].email : '',
+            idea: formData.teamName
+        };
+
+        // Google Apps Script web app URL
+        const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwOItLe58iexnq5qiJzGtT0WF0ZRht7_xFiwbvlWLU_arZCSjF8d_V_cduvesIxJFybxw/exec';
+
+        const response = await fetch(appsScriptUrl, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error(`HTTP ${response.status}: ${text}`);
+        }
+
+        const text = await response.text();
+        let result;
+        try {
+            result = JSON.parse(text);
+        } catch (jsonError) {
+            throw new Error(`Invalid JSON response from server: ${jsonError.message}, response text: ${text}`);
+        }
+
+        if (result.status !== 'success') {
+            throw new Error(result.message || 'Failed to submit to Google Sheets');
+        }
+
+        console.log('Data sent to Google Sheets successfully');
+    } catch (error) {
+        console.error("Error while sending data to Google Sheets:", error);
+        throw error;
+    }
+};

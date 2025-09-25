@@ -9,7 +9,7 @@ const FooterSection = () => {
           <div className="col-span-2">
             <div className="flex items-center mb-6">
               <Code className="h-8 w-8 text-yellow-500 mr-3" />
-              <h3 className="text-3xl font-bold text-yellow-500">Nepathya Hackathon Vol 1</h3>
+              <h3 className="text-3xl font-bold text-yellow-500">Nepathon Vol. 1</h3>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
               Join us for an exciting hackathon experience and showcase your skills at the national level.
@@ -45,8 +45,8 @@ const FooterSection = () => {
             <ul className="space-y-3">
               <li className="flex items-center text-gray-300">
                 <Mail className="h-4 w-4 mr-3 text-yellow-500" />
-                <a href="mailto:info@nepathya-hackathon.com" className="hover:text-yellow-500 transition-colors">
-                  info@nepathya-hackathon.com
+                <a href="mailto:info@nepathon.com" className="hover:text-yellow-500 transition-colors">
+                  info@nepathon.com
                 </a>
               </li>
               <li className="flex items-center text-gray-300">

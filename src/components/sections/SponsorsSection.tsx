@@ -3,7 +3,7 @@ import { Building2 } from "lucide-react";
 
 const SponsorsSection = () => {
   return (
-    <section className="py-20 relative">
+    <section className="py-20 relative bg-black">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold mb-6 text-neon-purple">

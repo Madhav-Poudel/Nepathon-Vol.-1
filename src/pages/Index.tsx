@@ -1,7 +1,8 @@
 import Navbar from "@/components/sections/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
-import ThemesSection from "@/components/sections/ThemesSection";
+import TeamSection from "@/components/sections/TeamSection";
+import AmenitiesSection from "@/components/sections/AmenitiesSection";
 import PrizeSection from "@/components/sections/PrizeSection";
 import TimelineSection from "@/components/sections/TimelineSection";
 import RegistrationSection from "@/components/sections/RegistrationSection";
@@ -14,7 +15,8 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <AboutSection />
-      <ThemesSection />
+      <TeamSection />
+      <AmenitiesSection />
       <PrizeSection />
       <TimelineSection />
       <RegistrationSection />

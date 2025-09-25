@@ -3,7 +3,8 @@ import { Menu, X } from "lucide-react";
 
 const links = [
   { label: "About", href: "#about" },
-  { label: "Themes", href: "#themes" },
+  { label: "Team", href: "#team" },
+  { label: "Amenities", href: "#amenities" },
   { label: "Prizes", href: "#prizes" },
   { label: "Timeline", href: "#timeline" },
   { label: "Registration", href: "#registration" },
@@ -15,7 +16,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-full bg-black backdrop-blur border-b border-gray-700 sticky top-0 z-50">
-      <div className="container mx-auto flex items-center justify-between h-16 px-4">
+      <div className="container mx-auto flex items-center justify-between h-20 px-4">
         {/* Left: Brand */}
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center">
@@ -27,7 +28,7 @@ const Navbar = () => {
         </div>
 
         {/* Center: Links (hidden on small screens) */}
-        <div className="hidden md:flex space-x-8 text-base font-medium text-gray-300">
+        <div className="hidden md:flex space-x-8 text-lg font-medium text-gray-300">
           {links.map((l) => (
             <a
               key={l.href}
@@ -66,6 +67,7 @@ const Navbar = () => {
               <a
                 key={l.href}
                 href={l.href}
+                onClick={() => setOpen(false)}
                 className="py-2 px-2 rounded-md hover:bg-muted/10 transition"
               >
                 {l.label}
@@ -73,6 +75,7 @@ const Navbar = () => {
             ))}
             <a
               href="#registration"
+              onClick={() => setOpen(false)}
               className="mt-2 inline-block bg-yellow-500 text-black px-4 py-2 rounded-md text-sm font-semibold"
             >
               Register

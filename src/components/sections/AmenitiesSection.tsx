@@ -67,16 +67,22 @@ const AmenitiesSection = () => {
           ))}
         </div>
 
-        <div className="text-center mt-16">
-          <h3 className="text-3xl font-bold mb-6 text-yellow-500">Additional Benefits</h3>
-          <ul className="space-y-2 max-w-2xl mx-auto">
-            {additionalBenefits.map((benefit) => (
-              <li key={benefit} className="flex items-center justify-center">
-                <Star className="h-5 w-5 text-yellow-500 mr-2" />
-                <span className="text-gray-300">{benefit}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="mt-16">
+          <div className="max-w-5xl mx-auto px-4">
+            <div>
+              <h3 className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-10 text-yellow-500 text-center">Additional Benefits</h3>
+              <ul className="space-y-8">
+                {additionalBenefits.map((benefit) => (
+                  <li key={benefit} className="flex items-center gap-6">
+                    <div className="flex-shrink-0 h-12 w-12 rounded-full border-2 border-yellow-400 flex items-center justify-center">
+                      <Star className="h-5 w-5 text-yellow-400" />
+                    </div>
+                    <span className="text-gray-300 text-lg sm:text-xl md:text-2xl leading-relaxed">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>

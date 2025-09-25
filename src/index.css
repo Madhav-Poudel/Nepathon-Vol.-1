@@ -56,6 +56,11 @@
   }
 }
 
+/* Smooth scrolling for navigation */
+html {
+  scroll-behavior: smooth;
+}
+
 .code-rain {
   position: fixed;
   top: 0;

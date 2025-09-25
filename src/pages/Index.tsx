@@ -6,8 +6,10 @@ import AmenitiesSection from "@/components/sections/AmenitiesSection";
 import PrizeSection from "@/components/sections/PrizeSection";
 import TimelineSection from "@/components/sections/TimelineSection";
 import RegistrationSection from "@/components/sections/RegistrationSection";
-import SponsorsSection from "@/components/sections/SponsorsSection";
+import ContactSection from "@/components/sections/ContactSection";
+import FAQSection from "@/components/sections/FAQSection";
 import FooterSection from "@/components/sections/FooterSection";
+import BackToTop from "@/components/ui/BackToTop";
 
 const Index = () => {
   return (
@@ -19,9 +21,11 @@ const Index = () => {
       <AmenitiesSection />
       <PrizeSection />
       <TimelineSection />
-      <RegistrationSection />
-      <SponsorsSection />
+  <RegistrationSection />
+    <FAQSection />
+  <ContactSection />
       <FooterSection />
+      <BackToTop />
     </div>
   );
 };

@@ -62,7 +62,7 @@ const cssVarMap: Record<string, string> = {
 // Updated the Timeline section to use the background color from ThemesSection
 const TimelineSection = () => {
 	return (
-		<section className="py-20 relative bg-black">
+		<section id="timeline" className="py-20 relative bg-black">
 			<div className="container mx-auto px-6">
 				<div className="text-center mb-10">
 					<h2 className="text-5xl font-extrabold mb-4 text-neon-green">Timeline</h2>

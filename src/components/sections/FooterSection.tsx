@@ -118,7 +118,7 @@ const FooterSection = () => {
                   href="tel:+977-123-456-789"
                   className="hover:text-yellow-500 transition-colors"
                 >
-                  +977-123-456-789
+                  +977 - 9849121059
                 </a>
               </li>
               <li className="flex items-start text-gray-300">

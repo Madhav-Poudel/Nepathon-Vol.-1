@@ -59,19 +59,18 @@ const TeamAvatar: React.FC<{
 
 const TeamSection = () => {
   const team = [
-    {
+     {
       name: "Aayam Regmi",
       position: "Event Lead",
       initials: "AR",
       photo: "/team/Aayam.png",
     },
-    {
+     {
       name: "Madhav Poudel",
       position: "Event Lead",
       initials: "MP",
       photo: "/team/president.jpg",
     },
-
     {
       name: "Ayush Aryal",
       position: "Director",
@@ -80,7 +79,7 @@ const TeamSection = () => {
     },
     {
       name: "Aakash Jung Rayamajhi",
-      position: "Advisory & Supervision Coordinator",
+      position: "Advisory & Supervision",
       initials: "AJR",
       photo: "/team/Aakash.png",
     },
@@ -88,20 +87,22 @@ const TeamSection = () => {
       name: "Nirmal Pandey",
       position: "HR Manager",
       initials: "NP",
-      photo: "/team/nirmal-pandey.jpg",
+      photo: "/team/Nirmal.png",
     },
     {
       name: "Arun Bhandari",
       position: "Technical Assessment Lead",
       initials: "AB",
-      photo: "/team/arun-bhandari.jpg",
+      photo: "/team/Arun.jpg",
     },
+
     {
       name: "Prajwal GC",
       position: "Sponsor & Finance Head",
       initials: "PGC",
-      photo: "/team/prajwal-gc.jpg",
+      photo: "/team/Prajwal.png",
     },
+
     {
       name: "Prajal Basnet",
       position: "Logistics Lead",
@@ -112,16 +113,28 @@ const TeamSection = () => {
       name: "Amrit Bhattarai",
       position: "Documentation Lead",
       initials: "AB",
-      photo: "/team/amrit-bhattarai.jpg",
+      photo: "/team/Amrit.png",
     },
   ];
 
   const supportingMembers = [
     {
       name: "Rosis",
-      position: "Content Creation Lead",
+      position: "Content Creation",
       initials: "R",
-      photo: "/team/rosis.jpg",
+      photo: "/team/Rosis.jpg",
+    },
+     {
+      name: "Bipasha Karki",
+      position: "Volunteer",
+      initials: "BR",
+      photo: "/team/Bipasha.png",
+    },
+    {
+      name: "Bindu Basnet",
+      position: "Volunteer",
+      initials: "BB",
+      photo: "/team/Bindu.png",
     },
     {
       name: "Roshni Neupane",
@@ -136,40 +149,10 @@ const TeamSection = () => {
       photo: "/team/Aakriti.png",
     },
     {
-      name: "Bibek Rai",
+      name: "Livesh Jha",
       position: "Volunteer",
-      initials: "BR",
-      photo: "/team/bibek-rai.jpg",
-    },
-    {
-      name: "Priya Lama",
-      position: "Volunteer",
-      initials: "PL",
-      photo: "/team/priya-lama.jpg",
-    },
-    {
-      name: "Sujan Gurung",
-      position: "Volunteer",
-      initials: "SG",
-      photo: "/team/sujan-gurung.jpg",
-    },
-    {
-      name: "Kriti Adhikari",
-      position: "Volunteer",
-      initials: "KA",
-      photo: "/team/kriti-adhikari.jpg",
-    },
-    {
-      name: "Nabin Joshi",
-      position: "Volunteer",
-      initials: "NJ",
-      photo: "/team/nabin-joshi.jpg",
-    },
-    {
-      name: "Sarita Pandey",
-      position: "Volunteer",
-      initials: "SP",
-      photo: "/team/sarita-pandey.jpg",
+      initials: "LJ",
+      photo: "/team/Livesh.png",
     },
   ];
 
@@ -177,10 +160,10 @@ const TeamSection = () => {
   function formatPosition(pos?: string) {
     if (!pos) return pos;
     const map: Record<string, string> = {
-      "Advisory & Supervision Coordinator": "Advisor & Supervisor",
+      "Advisory & Supervision Coordinator": "Advisor & Supervison",
       "Sponsor & Finance Head": "Sponsor & Finance",
       "Technical Assessment Lead": "Technical Lead",
-      "Documentation Lead": "Docs Lead",
+      "Documentation Lead": "Documentation Lead",
     };
     if (map[pos]) return map[pos];
     return pos
@@ -197,8 +180,9 @@ const TeamSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-5xl font-bold text-yellow-400 mb-4">
-            Organizers (Team FusionStack)
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400 mb-4 leading-tight">
+            Organizers
+            <span className="block sm:inline"> (Team <span className="whitespace-normal">FusionStack</span>)</span>
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Meet the incredible minds behind{" "}
@@ -209,8 +193,8 @@ const TeamSection = () => {
 
         {/* Organizers Custom Grid */}
         <div className="flex flex-col items-center space-y-10 mb-20 max-w-7xl mx-auto">
-          {/* Row 1: 2 members (Largest) */}
-          <div className="grid grid-cols-2 gap-8 w-full">
+          {/* Row 1: 2 members (Largest) - stack on small screens */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
             {team.slice(0, 2).map((member) => (
               <Card
                 key={member.name}
@@ -221,7 +205,7 @@ const TeamSection = () => {
                     src={member.photo}
                     alt={member.name}
                     initials={member.initials}
-                    sizeClass="w-32 h-32"
+                    sizeClass="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32"
                   />
                   <h4 className="text-3xl font-bold text-white mb-2 truncate">
                     {member.name}
@@ -234,8 +218,8 @@ const TeamSection = () => {
             ))}
           </div>
 
-          {/* Row 2: 3 members (Medium) */}
-          <div className="grid grid-cols-3 gap-8 w-full">
+          {/* Row 2: 3 members (Medium) - responsive to smaller screens */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
             {team.slice(2, 5).map((member) => (
               <Card
                 key={member.name}
@@ -246,7 +230,7 @@ const TeamSection = () => {
                     src={member.photo}
                     alt={member.name}
                     initials={member.initials}
-                    sizeClass="w-28 h-28"
+                    sizeClass="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28"
                   />
                   <h4 className="text-2xl font-bold text-white mb-1 truncate">
                     {member.name}
@@ -260,7 +244,7 @@ const TeamSection = () => {
           </div>
 
           {/* Row 3: 4 members (Smallest) */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full">
             {team.slice(5).map((member) => (
               <Card
                 key={member.name}
@@ -271,7 +255,7 @@ const TeamSection = () => {
                     src={member.photo}
                     alt={member.name}
                     initials={member.initials}
-                    sizeClass="w-24 h-24"
+                    sizeClass="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
                   />
                   <h4 className="text-xl font-bold text-white mb-1 truncate">
                     {member.name}
@@ -288,7 +272,7 @@ const TeamSection = () => {
         {/* Supporting Members */}
         <div>
           <div className="text-center mb-12">
-            <div className="inline-flex items-center space-x-3 px-20 py-3  mb-0">
+            <div className="inline-flex items-center space-x-3 px-4 py-3 mb-0">
               <h3 className="text-4xl font-bold text-yellow-400">
                 Supporting Members
               </h3>
@@ -307,7 +291,7 @@ const TeamSection = () => {
                     src={member.photo}
                     alt={member.name}
                     initials={member.initials}
-                    sizeClass="w-20 h-20"
+                    sizeClass="w-16 h-16 sm:w-20 sm:h-20"
                   />
                   <h4 className="text-xl font-bold text-white mt-2 truncate">
                     {member.name}

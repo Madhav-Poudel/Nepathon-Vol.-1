@@ -5,13 +5,16 @@ import { motion } from "framer-motion";
 const HeroSection = () => {
   const scrollToNext = () => {
     const aboutSection = document.getElementById("about");
-    aboutSection?.scrollIntoView({ behavior: "smooth" });
+    if (!aboutSection) return;
+    const navbarHeight = document.querySelector('nav')?.clientHeight || 80;
+    const top = aboutSection.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 8; // small padding
+    window.scrollTo({ top, behavior: 'smooth' });
   };
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden"
+      className="relative min-h-screen snap-start flex items-center justify-center bg-black overflow-hidden"
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
@@ -30,7 +33,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-xl md:text-7xl font-extrabold  text-yellow-400 uppercase drop-shadow-lg tracking-widest"
+          className="text-xl md:text-7xl font-extrabold text-yellow-400 uppercase drop-shadow-lg tracking-widest mt-10 md:mt-20"
         >
           Nepathon Vol.1
         </motion.h1>
@@ -69,6 +72,13 @@ const HeroSection = () => {
           <Button
             size="lg"
             className="bg-yellow-500 text-black hover:bg-yellow-400 px-10 py-6 text-lg font-bold shadow-lg rounded-full transition-transform transform hover:scale-105"
+            onClick={() => {
+              const reg = document.getElementById("registration");
+              if (!reg) return;
+              const navbarHeight = document.querySelector('nav')?.clientHeight || 80;
+              const top = reg.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 8;
+              window.scrollTo({ top, behavior: 'smooth' });
+            }}
           >
             Register Now
           </Button>
@@ -81,7 +91,41 @@ const HeroSection = () => {
             Learn More
           </Button>
         </motion.div>
+
+        {/* Stats cards (Selected Teams, Days, Expected Registrations, Provinces) */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 1.2 }}
+          className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 items-stretch"
+        >
+          {/* Card */}
+          <div className="bg-black/60 backdrop-blur-sm border border-white/60 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+            <div className="text-4xl md:text-5xl font-extrabold text-yellow-400">15</div>
+            <div className="mt-2 text-sm md:text-base text-yellow-300 uppercase tracking-widest font-semibold">Selected Teams</div>
+          </div>
+
+          {/* Card */}
+          <div className="bg-black/60 backdrop-blur-sm border border-white/60 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+            <div className="text-4xl md:text-5xl font-extrabold text-yellow-400">3</div>
+            <div className="mt-2 text-sm md:text-base text-yellow-300 uppercase tracking-widest font-semibold">Days of Hackathon</div>
+          </div>
+
+          {/* Card */}
+          <div className="bg-black/60 backdrop-blur-sm border border-white/60 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+            <div className="text-4xl md:text-5xl font-extrabold text-yellow-400">150+</div>
+            <div className="mt-2 text-sm md:text-base text-yellow-300 uppercase tracking-widest font-semibold">Expected Team Registrations</div>
+          </div>
+
+          {/* Card */}
+          <div className="bg-black/60 backdrop-blur-sm border border-white/60 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+            <div className="text-4xl md:text-5xl font-extrabold text-yellow-400">7</div>
+            <div className="mt-2 text-sm md:text-base text-yellow-300 uppercase tracking-widest font-semibold">Provinces Represented</div>
+          </div>
+        </motion.div>
       </div>
+
+      {/* intentionally no decorative SVG here to avoid overlap/gap issues */}
     </section>
   );
 };

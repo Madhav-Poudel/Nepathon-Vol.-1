@@ -8,7 +8,6 @@ const links = [
   { label: "Prizes", href: "#prizes" },
   { label: "Timeline", href: "#timeline" },
   { label: "Registration", href: "#registration" },
-  { label: "Sponsors", href: "#sponsors" },
 ];
 
 const Navbar = () => {
@@ -22,11 +21,13 @@ const Navbar = () => {
           href="#hero"
           className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
         >
-          <div className="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center">
-            <div className="w-5 h-5 rounded-full bg-black" />
-          </div>
+          <img
+            src="/Nepathonn.png"
+            alt="nepathon logo"
+            className="w-20 h-20 rounded-full object-cover"
+          />
           <div className="font-extrabold text-xl tracking-tight text-yellow-500">
-            Nepathya
+            Nepathon
           </div>
         </a>
 

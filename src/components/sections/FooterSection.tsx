@@ -4,10 +4,8 @@ import {
   Mail,
   MapPin,
   Phone,
-  Facebook,
-  Instagram,
-  Hash,
 } from "lucide-react";
+import { FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa"; // Updated imports for Font Awesome icons
 
 const FooterSection = () => {
   return (
@@ -28,22 +26,28 @@ const FooterSection = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61581487765092"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-300 hover:text-yellow-500 transition-colors"
               >
-                <Facebook className="h-6 w-6" />
+                <FaFacebook className="h-6 w-6" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/_fusion_stack_/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-300 hover:text-yellow-500 transition-colors"
               >
-                <Instagram className="h-6 w-6" />
+                <FaInstagram className="h-6 w-6" />
               </a>
               <a
-                href="#"
+                href="https://www.tiktok.com/@fusion_stack" // Updated TikTok link
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-300 hover:text-yellow-500 transition-colors"
               >
-                <Hash className="h-6 w-6" />
+                <FaTiktok className="h-6 w-6" />
               </a>
             </div>
           </div>

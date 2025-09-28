@@ -10,7 +10,7 @@ import {
 const faqs = [
   {
     q: "How do I register for Nepathon Vol.1?",
-    a: "Visit the Registration section on this site and fill the form. Registration is required for all participants. You will receive a confirmation email after successful registration.",
+    a: "Visit the Registration section on this site and fill the form. You will receive a confirmation email after successful registration.",
   },
   {
     q: "Who can participate?",
@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     q: "How will teams be shortlisted?",
-    a: "If more than 15 teams register, a shortlisting round will be conducted. Participants must submit their GitHub profile, CV, and optional LinkedIn profile. The selection team will choose the top 15 participants for the final hackathon.",
+    a: "If more than 15 teams register, a shortlisting round will be conducted.",
   },
   {
     q: "How are hackathon themes assigned?",

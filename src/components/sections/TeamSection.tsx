@@ -23,6 +23,7 @@ const TeamAvatar: React.FC<{
   const initialSrc = src || `/team/${slugify(alt)}.jpg`;
   const [imgSrc, setImgSrc] = useState<string | null>(initialSrc);
   const triedPng = useRef(false);
+    const triedFavicon = useRef(false);
 
   return (
     <div
@@ -45,7 +46,15 @@ const TeamAvatar: React.FC<{
                     setImgSrc(next);
                   }
                 } else {
-                  setImgSrc(null);
+                      // If png retry already attempted, fall back to a generic favicon image
+                      // stored in the /team folder. If that also fails, stop retrying and
+                      // let AvatarFallback show initials.
+                      if (!triedFavicon.current) {
+                        triedFavicon.current = true;
+                        setImgSrc('/team/favicon.ico');
+                      } else {
+                        setImgSrc(null);
+                      }
                 }
               }}
             />

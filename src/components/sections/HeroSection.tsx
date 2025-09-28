@@ -97,7 +97,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 1.2 }}
-          className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 items-stretch"
+          className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 items-stretch"
         >
           {/* Card */}
           <div className="bg-black/60 backdrop-blur-sm border border-white/60 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
@@ -121,6 +121,12 @@ const HeroSection = () => {
           <div className="bg-black/60 backdrop-blur-sm border border-white/60 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
             <div className="text-4xl md:text-5xl font-extrabold text-yellow-400">7</div>
             <div className="mt-2 text-sm md:text-base text-yellow-300 uppercase tracking-widest font-semibold">Provinces Represented</div>
+          </div>
+
+          {/* Fee Card */}
+          <div className="bg-black/60 backdrop-blur-sm border border-white/60 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+            <div className="text-2xl md:text-3xl font-extrabold text-yellow-400">Rs. 3000</div>
+            <div className="mt-2 text-sm md:text-base text-yellow-300 uppercase tracking-widest font-semibold">Per Team Registration</div>
           </div>
         </motion.div>
       </div>

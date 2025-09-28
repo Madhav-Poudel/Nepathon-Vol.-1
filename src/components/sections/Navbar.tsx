@@ -8,6 +8,7 @@ const links = [
   { label: "Prizes", href: "#prizes" },
   { label: "Timeline", href: "#timeline" },
   { label: "Registration", href: "#registration" },
+  { label: "Code of Conduct", href: "/code-of-conduct" }, // Added Code of Conduct link
 ];
 
 const Navbar = () => {

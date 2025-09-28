@@ -11,7 +11,26 @@ function ContactForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name && !email && !message) return;
+
+    // Validate email
+    if (!email || !email.includes("@")) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!name && !message) {
+      toast({
+        title: "Missing fields",
+        description: "Please fill out all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setSending(true);
     try {
       // Replace these with the values you gave
@@ -109,6 +128,7 @@ function ContactForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
+          required // Made email field compulsory
           className="w-full px-3 py-2 rounded bg-background border"
         />
       </div>

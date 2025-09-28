@@ -34,10 +34,10 @@ const RegistrationSection = () => {
                 </h4>
                 <ul className="list-disc list-inside">
                   <li>
-                    Only 15 participants will be selected for the hackathon.
+                    Only 15 Teams will be selected for the hackathon.
                   </li>
                   <li>
-                    If more than 15 participants register, a shortlisting round
+                    If more than 15 Teams register, a shortlisting round
                     will be conducted.
                   </li>
                 </ul>
@@ -47,7 +47,7 @@ const RegistrationSection = () => {
                   Registration Requirements:
                 </h4>
                 <p>
-                  Participants must submit the following during registration:
+                  Teams must submit the following during registration:
                 </p>
                 <ul className="list-disc list-inside">
                   <li>GitHub profile links of all team members</li>
@@ -64,7 +64,7 @@ const RegistrationSection = () => {
                     Themes will be shared via email prior to the hackathon.
                   </li>
                   <li>
-                    Each selected participant/team will be assigned one theme,
+                    Each selected team will be assigned one theme,
                     and all work during the hackathon must be based on the
                     assigned theme.
                   </li>
@@ -74,7 +74,7 @@ const RegistrationSection = () => {
                 <h4 className="font-semibold text-lg text-neon-green/80">
                   Registration Fee:
                 </h4>
-                <p>NPR 3,000 per participant</p>
+                <p>NPR 3,000 per Team</p>
               </div>
               <div>
                 <h4 className="font-semibold text-lg text-neon-green/80">
@@ -86,7 +86,7 @@ const RegistrationSection = () => {
                     profiles, CVs, and LinkedIn (if provided).
                   </li>
                   <li>
-                    15 participants will be selected based on this evaluation.
+                    15 Teams will be selected based on this evaluation.
                   </li>
                 </ul>
               </div>

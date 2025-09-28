@@ -163,6 +163,12 @@ const TeamSection = () => {
       initials: "LJ",
       photo: "/team/Livesh.png",
     },
+     {
+      name: "Santosh Adhikari",
+      position: "Volunteer",
+      initials: "SA",
+      photo: "/team/Santosh.png",
+    },
   ];
 
   // Normalize/shorten long position titles for display

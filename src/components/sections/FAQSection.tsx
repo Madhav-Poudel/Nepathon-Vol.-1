@@ -40,7 +40,6 @@ const faqs = [
     q: "Do teams have to be from the same college?",
     a: "No - teams can be formed with participants from different colleges. You do not have to form a team only with your own college members.",
   },
-
   {
     q: "Can organizations sponsor the event?",
     a: "Yes - please contact the organizing team for sponsorship opportunities and packages at nepathon@nepathyacollege.edu.np.",
@@ -48,6 +47,10 @@ const faqs = [
   {
     q: "I need help or have other questions",
     a: "Reach out to the Event Leads listed in the Contact section or send us a message using the contact form — we'll get back to you shortly.",
+  },
+  {
+    q: "How is the selection process conducted?",
+    a: "We will provide a theme to the registered teams. Teams are required to create a short pitching demo video explaining their approach and submit it for evaluation.",
   },
 ];
 

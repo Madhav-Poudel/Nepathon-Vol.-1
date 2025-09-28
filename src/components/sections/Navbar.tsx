@@ -8,7 +8,7 @@ const links = [
   { label: "Prizes", href: "#prizes" },
   { label: "Timeline", href: "#timeline" },
   { label: "Registration", href: "#registration" },
-  { label: "Code of Conduct", href: "/code-of-conduct" }, // Added Code of Conduct link
+  { label: "Code of Conduct", href: "#code-of-conduct" }, // Updated Code of Conduct link to point to the integrated section
 ];
 
 const Navbar = () => {

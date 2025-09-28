@@ -80,11 +80,12 @@ const RegistrationSection = () => {
                 <h4 className="font-semibold text-lg text-neon-green/80">
                   Selection Criteria:
                 </h4>
+                <div className="text-left">
+                  <p>
+                    We will provide a theme to the registered teams. Teams are required to create a short pitching demo video explaining their approach and submit it for evaluation.
+                  </p>
+                </div>
                 <ul className="list-disc list-inside">
-                  <li>
-                    The selection team (group of mentors) will review GitHub
-                    profiles, CVs, and LinkedIn (if provided).
-                  </li>
                   <li>
                     15 Teams will be selected based on this evaluation.
                   </li>

@@ -23,7 +23,7 @@ const TeamAvatar: React.FC<{
   const initialSrc = src || `/team/${slugify(alt)}.jpg`;
   const [imgSrc, setImgSrc] = useState<string | null>(initialSrc);
   const triedPng = useRef(false);
-    const triedFavicon = useRef(false);
+  const triedFavicon = useRef(false);
 
   return (
     <div
@@ -46,15 +46,12 @@ const TeamAvatar: React.FC<{
                     setImgSrc(next);
                   }
                 } else {
-                      // If png retry already attempted, fall back to a generic favicon image
-                      // stored in the /team folder. If that also fails, stop retrying and
-                      // let AvatarFallback show initials.
-                      if (!triedFavicon.current) {
-                        triedFavicon.current = true;
-                        setImgSrc('/team/favicon.ico');
-                      } else {
-                        setImgSrc(null);
-                      }
+                  if (!triedFavicon.current) {
+                    triedFavicon.current = true;
+                    setImgSrc("/team/favicon.ico");
+                  } else {
+                    setImgSrc(null);
+                  }
                 }
               }}
             />
@@ -68,13 +65,13 @@ const TeamAvatar: React.FC<{
 
 const TeamSection = () => {
   const team = [
-     {
+    {
       name: "Aayam Regmi",
       position: "Event Lead",
       initials: "AR",
       photo: "/team/Aayam.png",
     },
-     {
+    {
       name: "Madhav Poudel",
       position: "Event Lead",
       initials: "MP",
@@ -98,12 +95,6 @@ const TeamSection = () => {
       initials: "NP",
       photo: "/team/Nirmal.png",
     },
-    {
-      name: "Arun Bhandari",
-      position: "Technical Assessment Lead",
-      initials: "AB",
-      photo: "/team/Arun.jpg",
-    },
 
     {
       name: "Prajwal GC",
@@ -111,29 +102,13 @@ const TeamSection = () => {
       initials: "PGC",
       photo: "/team/Prajwal.png",
     },
-
     {
-      name: "Prajal Basnet",
-      position: "Logistics Lead",
-      initials: "PB",
-      photo: "/team/Prajal.png",
-    },
-    {
-      name: "Amrit Bhattarai",
-      position: "Documentation Lead",
-      initials: "AB",
-      photo: "/team/Amrit.png",
-    },
-  ];
-
-  const supportingMembers = [
-    {
-      name: "Rosis",
+      name: "Rosis Sharma",
       position: "Content Creation",
-      initials: "R",
+      initials: "RS",
       photo: "/team/Rosis.jpg",
     },
-     {
+    {
       name: "Bipasha Karki",
       position: "Volunteer",
       initials: "BR",
@@ -163,11 +138,11 @@ const TeamSection = () => {
       initials: "LJ",
       photo: "/team/Livesh.png",
     },
-     {
+    {
       name: "Santosh Adhikari",
       position: "Volunteer",
       initials: "SA",
-      photo: "/team/Santosh.png",
+      photo: "/src/Chasmey.jpg",
     },
   ];
 
@@ -197,7 +172,12 @@ const TeamSection = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400 mb-4 leading-tight">
             Organizers
-            <span className="block sm:inline"> (Team <span className="whitespace-normal">FusionStack</span>)</span>
+            <span className="block sm:inline">
+              {" "}
+              (Team{" "}
+              <span className="whitespace-normal">FusionStack</span>
+              )
+            </span>
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Meet the incredible minds behind{" "}
@@ -259,7 +239,7 @@ const TeamSection = () => {
           </div>
 
           {/* Row 3: 4 members (Smallest) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full mb-0">
             {team.slice(5).map((member) => (
               <Card
                 key={member.name}
@@ -273,42 +253,6 @@ const TeamSection = () => {
                     sizeClass="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
                   />
                   <h4 className="text-xl font-bold text-white mb-1 truncate">
-                    {member.name}
-                  </h4>
-                  <p className="text-yellow-300 text-sm font-semibold truncate">
-                    {formatPosition(member.position)}
-                  </p>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Supporting Members */}
-        <div>
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center space-x-3 px-4 py-3 mb-0">
-              <h3 className="text-4xl font-bold text-yellow-400">
-                Supporting Members
-              </h3>
-            </div>
-          </div>
-
-          {/* 3x3 Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {supportingMembers.map((member) => (
-              <Card
-                key={member.name}
-                className="relative bg-gradient-to-br from-gray-800/80 via-gray-900/80 to-black/80 backdrop-blur-xl border-2 border-yellow-500/30 overflow-hidden transform transition-transform text-center"
-              >
-                <div className="relative p-6">
-                  <TeamAvatar
-                    src={member.photo}
-                    alt={member.name}
-                    initials={member.initials}
-                    sizeClass="w-16 h-16 sm:w-20 sm:h-20"
-                  />
-                  <h4 className="text-xl font-bold text-white mt-2 truncate">
                     {member.name}
                   </h4>
                   <p className="text-yellow-300 text-sm font-semibold truncate">

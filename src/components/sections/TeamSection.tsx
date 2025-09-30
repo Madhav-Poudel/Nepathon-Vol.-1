@@ -17,13 +17,23 @@ function slugify(name: string) {
 const TeamAvatar: React.FC<{
   src?: string;
   alt: string;
-  initials: string;
+  initials?: string;
   sizeClass?: string;
 }> = ({ src, alt, initials, sizeClass = "w-24 h-24" }) => {
   const initialSrc = src || `/team/${slugify(alt)}.jpg`;
   const [imgSrc, setImgSrc] = useState<string | null>(initialSrc);
   const triedPng = useRef(false);
   const triedFavicon = useRef(false);
+
+  // derive initials from the alt/name if not provided
+  const computedInitials =
+    initials ||
+    (alt || "")
+      .split(" ")
+      .map((s) => s[0] || "")
+      .slice(0, 2)
+      .join("")
+      .toUpperCase();
 
   return (
     <div
@@ -56,7 +66,7 @@ const TeamAvatar: React.FC<{
               }}
             />
           ) : null}
-          <AvatarFallback>{initials}</AvatarFallback>
+          <AvatarFallback>{computedInitials}</AvatarFallback>
         </Avatar>
       </div>
     </div>
@@ -150,6 +160,13 @@ const TeamSection = () => {
       initials: "SA",
       photo: "/src/Chasmey.jpg",
     },
+    
+    {
+      name: "Manasbi Poudel",
+      position: "Volunteer",
+      initials: "MP",
+      photo: "/Manasbi.jpg",
+    },
   ];
 
   // Normalize/shorten long position titles for display
@@ -159,7 +176,7 @@ const TeamSection = () => {
       "Advisory & Supervision Coordinator": "Advisor & Supervison",
       "Sponsor & Finance Head": "Sponsor & Finance",
       "Technical Assessment Lead": "Technical Lead",
-      "Documentation Lead": "Documentation Lead",
+      "Documentation Lead": "Documentation Lead"
     };
     if (map[pos]) return map[pos];
     return pos
@@ -167,6 +184,30 @@ const TeamSection = () => {
       .replace("Lead", "Lead")
       .slice(0, 36);
   }
+
+  // Deduplicate by name in case some members were added twice
+  const uniqueTeam = Array.from(new Map(team.map((m) => [m.name, m])).values());
+
+  // Ensure these specific members appear in the last row (order preserved for others)
+  const preferredLast = [
+    "Aakriti Parajuli",
+    "Livesh Jha",
+    "Santosh Adhikari",
+    "Manasbi Poudel",
+  ];
+  const remaining = uniqueTeam.filter((m) => !preferredLast.includes(m.name));
+  const tail = preferredLast
+    .map((name) => uniqueTeam.find((m) => m.name === name))
+    .filter(Boolean) as (typeof team)[0][];
+  const finalTeam = [...remaining, ...tail];
+
+  // Prepare rows: middle chunks of 3 (excluding first 2 and last 4) based on finalTeam
+  const middle = finalTeam.slice(2, Math.max(2, finalTeam.length - 4));
+  const middleChunks: any[] = [];
+  for (let i = 0; i < middle.length; i += 3) {
+    middleChunks.push(middle.slice(i, i + 3));
+  }
+  const lastRow = finalTeam.slice(-4);
 
   return (
     <section
@@ -196,7 +237,7 @@ const TeamSection = () => {
         <div className="flex flex-col items-center space-y-10 mb-20 max-w-7xl mx-auto">
           {/* Row 1: 2 members */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-            {team.slice(0, 2).map((member) => (
+            {uniqueTeam.slice(0, 2).map((member) => (
               <Card
                 key={member.name}
                 className="relative bg-gray-900/30 backdrop-blur-xl border-2 border-yellow-500/30 overflow-hidden transform transition-transform text-center"
@@ -219,10 +260,13 @@ const TeamSection = () => {
             ))}
           </div>
 
-          {/* Remaining Rows: 4 members per row */}
-          {Array.from({ length: Math.ceil((team.length - 2) / 4) }, (_, i) => (
-            <div key={i} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full">
-              {team.slice(2 + i * 4, 2 + (i + 1) * 4).map((member) => (
+          {/* Remaining Rows: 3 members per row, except the last row with 4 members */}
+          {middleChunks.map((chunk, i) => (
+            <div
+              key={i}
+              className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full`}
+            >
+              {chunk.map((member) => (
                 <Card
                   key={member.name}
                   className="relative bg-gradient-to-br from-gray-800/80 via-gray-900/80 to-black/80 backdrop-blur-xl border-2 border-yellow-500/30 overflow-hidden transform transition-transform text-center"
@@ -245,6 +289,31 @@ const TeamSection = () => {
               ))}
             </div>
           ))}
+
+          {/* Last Row: 4 members */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full">
+            {lastRow.map((member) => (
+              <Card
+                key={member.name}
+                className="relative bg-gradient-to-br from-gray-800/80 via-gray-900/80 to-black/80 backdrop-blur-xl border-2 border-yellow-500/30 overflow-hidden transform transition-transform text-center"
+              >
+                <div className="relative p-6">
+                  <TeamAvatar
+                    src={member.photo}
+                    alt={member.name}
+                    initials={member.initials}
+                    sizeClass="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
+                  />
+                  <h4 className="text-xl font-bold text-white mb-1 truncate">
+                    {member.name}
+                  </h4>
+                  <p className="text-yellow-300 text-sm font-semibold truncate">
+                    {formatPosition(member.position)}
+                  </p>
+                </div>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -221,9 +221,9 @@ const TeamSection = () => {
             Organizers
             <span className="block sm:inline">
               {" "}
-              (Team{" "}
+              : Team{" "}
               <span className="whitespace-normal">FusionStack</span>
-              )
+              
             </span>
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">

@@ -48,7 +48,9 @@ const Navbar = () => {
         {/* Right: Register + Mobile toggle */}
         <div className="flex items-center space-x-4">
           <a
-            href="#registration"
+            href="https://forms.gle/nQxRvvugs1DEREtc9"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden sm:inline-block bg-yellow-500 text-black px-4 py-2 rounded-md text-sm font-semibold hover:opacity-90 transition"
           >
             Register

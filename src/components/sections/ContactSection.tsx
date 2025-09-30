@@ -196,26 +196,26 @@ const ContactSection = () => {
 
             <div className="space-y-3 text-gray-200">
               <div>
-                <div className="font-bold text-yellow-300">Aayam Regmi</div>
-                <div className="text-sm">
-                  Event Lead •{" "}
-                  <a
-                    className="text-yellow-200 no-underline hover:no-underline hover:text-yellow-200 hover:opacity-100 focus:outline-none"
-                    href="tel:+977-9845207641"
-                  >
-                    +977-9845207641
-                  </a>
-                </div>
-              </div>
-              <div>
                 <div className="font-bold text-yellow-300">Madhav Poudel</div>
                 <div className="text-sm">
-                  Event Lead •{" "}
+                  Event Lead :{" "}
                   <a
                     className="text-yellow-200 no-underline hover:no-underline hover:text-yellow-200 hover:opacity-100 focus:outline-none"
                     href="tel:+977-9849121059"
                   >
                     +977-9849121059
+                  </a>
+                </div>
+              </div>
+              <div>
+                <div className="font-bold text-yellow-300">Aayam Regmi</div>
+                <div className="text-sm">
+                  Event Lead :{" "}
+                  <a
+                    className="text-yellow-200 no-underline hover:no-underline hover:text-yellow-200 hover:opacity-100 focus:outline-none"
+                    href="tel:+977-9845207641"
+                  >
+                    +977-9845207641
                   </a>
                 </div>
               </div>

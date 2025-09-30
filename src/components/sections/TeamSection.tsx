@@ -103,6 +103,12 @@ const TeamSection = () => {
       photo: "/team/Prajwal.png",
     },
     {
+      name: "Prajal Basnet",
+      position: "Logistics Lead",
+      initials: "PB",
+      photo: "/team/Prajal.png",
+    },
+    {
       name: "Rosis Sharma",
       position: "Content Creation",
       initials: "RS",
@@ -188,7 +194,7 @@ const TeamSection = () => {
 
         {/* Organizers Custom Grid */}
         <div className="flex flex-col items-center space-y-10 mb-20 max-w-7xl mx-auto">
-          {/* Row 1: 2 members (Largest) - stack on small screens */}
+          {/* Row 1: 2 members */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
             {team.slice(0, 2).map((member) => (
               <Card
@@ -213,55 +219,32 @@ const TeamSection = () => {
             ))}
           </div>
 
-          {/* Row 2: 3 members (Medium) - responsive to smaller screens */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-            {team.slice(2, 5).map((member) => (
-              <Card
-                key={member.name}
-                className="relative bg-gray-900/30 backdrop-blur-xl border-2 border-yellow-500/30 overflow-hidden transform transition-transform text-center"
-              >
-                <div className="relative p-6">
-                  <TeamAvatar
-                    src={member.photo}
-                    alt={member.name}
-                    initials={member.initials}
-                    sizeClass="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28"
-                  />
-                  <h4 className="text-2xl font-bold text-white mb-1 truncate">
-                    {member.name}
-                  </h4>
-                  <p className="text-yellow-300 text-base font-semibold truncate">
-                    {formatPosition(member.position)}
-                  </p>
-                </div>
-              </Card>
-            ))}
-          </div>
-
-          {/* Row 3: 4 members (Smallest) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full mb-0">
-            {team.slice(5).map((member) => (
-              <Card
-                key={member.name}
-                className="relative bg-gradient-to-br from-gray-800/80 via-gray-900/80 to-black/80 backdrop-blur-xl border-2 border-yellow-500/30 overflow-hidden transform transition-transform text-center"
-              >
-                <div className="relative p-6">
-                  <TeamAvatar
-                    src={member.photo}
-                    alt={member.name}
-                    initials={member.initials}
-                    sizeClass="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
-                  />
-                  <h4 className="text-xl font-bold text-white mb-1 truncate">
-                    {member.name}
-                  </h4>
-                  <p className="text-yellow-300 text-sm font-semibold truncate">
-                    {formatPosition(member.position)}
-                  </p>
-                </div>
-              </Card>
-            ))}
-          </div>
+          {/* Remaining Rows: 4 members per row */}
+          {Array.from({ length: Math.ceil((team.length - 2) / 4) }, (_, i) => (
+            <div key={i} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full">
+              {team.slice(2 + i * 4, 2 + (i + 1) * 4).map((member) => (
+                <Card
+                  key={member.name}
+                  className="relative bg-gradient-to-br from-gray-800/80 via-gray-900/80 to-black/80 backdrop-blur-xl border-2 border-yellow-500/30 overflow-hidden transform transition-transform text-center"
+                >
+                  <div className="relative p-6">
+                    <TeamAvatar
+                      src={member.photo}
+                      alt={member.name}
+                      initials={member.initials}
+                      sizeClass="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
+                    />
+                    <h4 className="text-xl font-bold text-white mb-1 truncate">
+                      {member.name}
+                    </h4>
+                    <p className="text-yellow-300 text-sm font-semibold truncate">
+                      {formatPosition(member.position)}
+                    </p>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </section>

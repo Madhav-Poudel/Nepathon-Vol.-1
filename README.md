@@ -1,62 +1,52 @@
-# Welcome to your project
+Nepathon Vol.1 – Official Hackathon Website
 
-## Project info
+A modern, fast, and responsive website built for Nepathon Vol.1, designed to provide participants and visitors with a clean user experience, clear event information, and an elegant UI powered by cutting-edge frontend technologies.
 
+🌐 Live site: https://nepathon.nepathyacollege.edu.np/
 
-## How can I edit this code?
+⚙️ Tech Stack (Icons Included)
+<p align="left"> <img src="https://skillicons.dev/icons?i=vite,react,ts,tailwind" height="48" /> </p>
 
-There are several ways of editing your application.
+Vite – Lightning-fast bundler
 
-**Use your preferred IDE**
+React + TypeScript – Strongly typed component-driven architecture
 
-If you want to work locally using your own IDE, you can clone this repo and push changes.
+Tailwind CSS – Utility-first styling
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+shadcn/ui – Clean, accessible, reusable UI components
 
-Follow these steps:
+Radix UI – Headless, accessible UI primitives
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+✨ Features
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+🔥 Modern landing page with smooth UX
 
-# Step 3: Install the necessary dependencies.
-npm i
+📱 Fully responsive across all screen sizes
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+🎨 Minimal, clean, and modern UI
+
+⚡ Ultra-fast performance powered by Vite
+
+🧭 Well-structured sections: About, Tracks, Schedule, Judges, FAQs, Contact
+
+🧩 Reusable component architecture
+
+🎬 Smooth animations using Framer Motion
+
+🖼️ Optimized images & assets for fast loading
+
+🛠️ Installation & Setup
+# Clone the repository
+git clone https://github.com/your-username/nepathon-vol1.git
+
+# Navigate to the project
+cd nepathon-vol1
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-```
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/ec6a5a34-352e-4608-854d-31287b437b27) and click on Share -> Publish.
-
-## Can I connect a custom domain to my project?
-
-Read more here: [Setting up a custom domain](https://docs.example.com/features/custom-domain#custom-domain)
+# Build for production
+npm run build
